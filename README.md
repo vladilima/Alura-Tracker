@@ -1,24 +1,7 @@
 # alura-tracker
 
-## Project setup
-```
-npm install
-```
+Projeto de aplicação de tracker de tarefas utilizando o framework front-end Vue.js 3 
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+#### Curso
 
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+https://cursos.alura.com.br/course/vue3-comecando-framework
