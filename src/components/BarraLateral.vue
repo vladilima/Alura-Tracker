@@ -4,7 +4,7 @@
             <img src="../assets/logo.png">
         </h1>
 
-        <Botao texto="Ativar modo escuro" @click="alterarTema" />
+        <Botao :texto="textoBotao" @click="alterarTema" />
         
     </header>
 </template>
@@ -23,6 +23,14 @@ export default defineComponent({
     },
     components: {
         Botao
+    },
+    computed: {
+        textoBotao () {
+            if (this.modoEscuroAtivo) {
+                return 'Desativar modo escuro'
+            }
+            return 'Ativar modo escuro'
+        }
     },
     methods: {
         alterarTema () {
