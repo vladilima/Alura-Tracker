@@ -3,7 +3,7 @@
             <span class="icon" v-if="icone">
                 <i :class='icone'></i>
             </span>
-            <span>{{ texto }}</span>
+            <span  v-if="texto">{{ texto }}</span>
         </button>
 </template>
 
