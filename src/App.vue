@@ -41,14 +41,16 @@ export default defineComponent({
 }
 main {
   --bg-primario: #fff;
+  --bg-secundario: #eee;
   --texto-primario: #000;
-  --form-primario: var(--bg-primario);
+  --form-primario: var(--bg-secundario);
   --box-color: #FAF0CA;
 }
 main.modo-escuro {
   --bg-primario: #2b2d42;
+  --bg-secundario: #1b1d29;
   --texto-primario: #ddd;
-  --form-primario: #1b1d29;
+  --form-primario: var(--bg-secundario);
   --box-color: #ffd11a;
 }
 .conteudo {

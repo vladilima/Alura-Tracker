@@ -1,10 +1,10 @@
 <template>
     <button class="button">
-            <span class="icon" v-if="icone">
-                <i :class='icone'></i>
-            </span>
-            <span  v-if="texto">{{ texto }}</span>
-        </button>
+        <span class="icon" v-if="icone">
+            <i :class='icone'></i>
+        </span>
+        <span  v-if="texto">{{ texto }}</span>
+    </button>
 </template>
 
 <script lang="ts">

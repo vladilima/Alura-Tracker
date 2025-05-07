@@ -4,7 +4,7 @@
             <img src="../assets/logo.png">
         </h1>
 
-        <Botao :texto="textoBotao" @click="alterarTema" />
+        <Botao :texto="textoBotao" @click="alterarTema" icone="fas fa-sun" />
 
         <nav class="panel mt-5">
             <ul>

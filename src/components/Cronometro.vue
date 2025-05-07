@@ -1,7 +1,10 @@
 <template>
-    <strong class="display">
-        {{ tempoDecorrido }}
-    </strong>
+    <span class="icon display">
+        <i class="fas fa-clock mr-2"></i>
+        <strong >
+            {{ tempoDecorrido }}
+        </strong>
+    </span>
 </template>
 
 <script lang="ts">
@@ -27,11 +30,11 @@ export default defineComponent({
 </script>
 
 <style scoped>
-.display {
+.display strong {
     color: var(--texto-primario)
 }
 
-.tarefa {
+.tarefa strong {
     color: #000;
 }
 </style>

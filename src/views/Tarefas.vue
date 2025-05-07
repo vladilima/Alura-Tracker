@@ -19,6 +19,7 @@ import ITarefa from '../interfaces/ITarefa';
 import { TipoNotificacao } from '@/interfaces/INotificacao';
 import { NOTIFICAR } from '@/store/tipo-mutacoes';
 import { useStore } from '@/store';
+import { notificacaoMixin } from '@/mixins/notificar';
 
 export default defineComponent({
   name: 'App',
@@ -27,6 +28,7 @@ export default defineComponent({
     Tarefa,
     Box
   },
+  mixins: [notificacaoMixin],
   data() {
     return {
       tarefas: [] as ITarefa[]
@@ -38,11 +40,7 @@ export default defineComponent({
         this.tarefas.push(tarefa)
       }
       else {
-        this.store.commit(NOTIFICAR, {
-                titulo: 'Tarefa não foi salva',
-                texto: 'Erro: A tarefa deve ter um projeto vinculado.',
-                tipo: TipoNotificacao.FALHA
-            })
+        this.notificar(TipoNotificacao.FALHA, 'Tarefa não foi salva', 'Erro: A tarefa deve ter um projeto vinculado.')
       }
     }
   },
@@ -54,3 +52,9 @@ export default defineComponent({
     }
 });
 </script>
+
+<style>
+.span {
+  --texto-primario: #000;
+}
+</style>

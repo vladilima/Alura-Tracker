@@ -1,7 +1,7 @@
 <template>
     <section>
 
-        <router-link to="/projetos/novo" class="button">
+        <router-link to="/projetos/novo" class="button mb-3">
             <span class="icon is-small">
                 <i class="fas fa-plus"></i>
             </span>
@@ -62,3 +62,18 @@ export default defineComponent({
 })
 
 </script>
+
+<style scoped>
+.table {
+    border-radius: 10px;
+    background-color: var(--bg-secundario);
+}
+
+.table th {
+    color: var(--texto-primario);
+}
+.table td {
+    color: var(--texto-primario);
+    align-content: center;
+}
+</style>
