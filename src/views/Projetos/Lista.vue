@@ -40,7 +40,6 @@
 import Botao from '@/components/Botao.vue';
 import { useStore } from '@/store';
 import { OBTER_PROJETOS, REMOVER_PROJETO } from '@/store/tipo-actions';
-import { EXCLUIR_PROJETO } from '@/store/tipo-mutacoes';
 import { computed, defineComponent } from 'vue'
 
 export default defineComponent({
@@ -58,7 +57,7 @@ export default defineComponent({
         store.dispatch(OBTER_PROJETOS)
         
         return {
-            projetos: computed(() => store.state.projetos),
+            projetos: computed(() => store.state.projeto.projetos),
             store
         }
     }

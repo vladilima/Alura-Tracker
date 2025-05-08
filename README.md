@@ -11,3 +11,5 @@ https://alura-tracker-wheat-three.vercel.app/
 https://cursos.alura.com.br/course/vue3-comecando-framework
 
 https://cursos.alura.com.br/course/vue3-avancando-framework
+
+https://cursos.alura.com.br/course/vue3-composition-api-vuex

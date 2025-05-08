@@ -1,12 +1,19 @@
 {
   "projetos": [
     {
-      "id": "19dc",
-      "nome": "Alura Tracker 3.0"
-    },
+      "id": "58d1",
+      "nome": "Alura Tracker"
+    }
+  ],
+  "tarefas": [
     {
-      "id": "846d",
-      "nome": "Plano de Estudos"
+      "id": "64a6",
+      "duracaoEmSegundos": 1,
+      "descricao": "Refatoração",
+      "projeto": {
+        "id": "58d1",
+        "nome": "Alura Tracker"
+      }
     }
   ]
 }
