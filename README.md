@@ -6,6 +6,16 @@ Projeto de aplicação de tracker de tarefas utilizando o framework front-end Vu
 
 https://alura-tracker-wheat-three.vercel.app/
 
+### Tecnologias Utilizadas
+
+- Vue.js 3
+- Vuex
+- Vue Router
+- Axios
+- FortAwesome Icons
+- Bulma
+- JSON Server
+
 #### Cursos desenvolvendo a aplicação
 
 https://cursos.alura.com.br/course/vue3-comecando-framework

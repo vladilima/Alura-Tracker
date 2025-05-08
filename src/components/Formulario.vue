@@ -2,12 +2,7 @@
     <div class="box formulario">
         <div class="columns">
             <div class="column is-5" role="form" aria-label="Formulário para criação de uma nova tarefa">
-                <input 
-                    type="text" 
-                    class="input" 
-                    placeholder="Qual tarefa você deseja iniciar?"
-                    v-model="descricao"
-                />
+                <input type="text" class="input" placeholder="Qual tarefa você deseja iniciar?" v-model="descricao" />
             </div>
 
             <div class="column is-3">
@@ -30,7 +25,7 @@
 
 <script lang="ts">
 
-import { computed, defineComponent } from 'vue';
+import { computed, defineComponent, ref } from 'vue';
 import Temporizador from './Temporizador.vue';
 import { useStore } from 'vuex';
 import { key } from '@/store';
@@ -41,26 +36,29 @@ export default defineComponent({
     components: {
         Temporizador
     },
-    data () {
-        return{
-            descricao: '',
-            idProjeto: ''
-        }
-    },
-    methods: {
-        finalizarTarefa (tempoDecorrido : number) : void {
-            this.$emit('aoSalvarTarefa', {
-                duracaoEmSegundos: tempoDecorrido,
-                descricao: this.descricao,
-                projeto: this.projetos.find(proj => proj.id == this.idProjeto)
-            })
-            this.descricao = ''
-        }
-    },
-    setup() {
+    setup(props, { emit }) {
+
         const store = useStore(key);
+        
+        const projetos = computed(() => store.state.projeto.projetos)
+        
+        const descricao = ref("")
+        const idProjeto = ref("")
+
+        const finalizarTarefa = (tempoEmSegundos: number) => {
+            emit('aoSalvarTarefa', {
+                duracaoEmSegundos: tempoEmSegundos,
+                descricao: descricao.value,
+                projeto: projetos.value.find(proj => proj.id == idProjeto.value)
+            })
+            descricao.value = ''
+        }
+
         return {
-            projetos: computed(() => store.state.projeto.projetos)
+            projetos,
+            descricao,
+            idProjeto,
+            finalizarTarefa
         }
     }
 })
