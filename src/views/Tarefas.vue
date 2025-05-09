@@ -1,9 +1,23 @@
 <template>
   <Formulario @aoSalvarTarefa="salvarTarefa" />
   <div class="lista">
-    <Box v-if="tarefas?.length === 0">
+    
+    <div class="field filtro">
+      <p class="control has-icons-left has-icons-right">
+        <input class="input"  type="text" placeholder="Filtrar tarefas" v-model="filtro"/>
+        <span class="icon is-small is-left">
+          <i class="fas fa-search"></i>
+        </span>
+      </p>
+    </div>
+
+    <Box v-if="tarefas?.length === 0 && filtro !== ''">
+      Nenhuma tarefa correspondente a esse filtro.
+    </Box>
+    <Box v-else-if="tarefas?.length === 0 && filtro === ''">
       Você não está muito produtivo hoje :(
     </Box>
+
     <Tarefa v-for="(tarefa, index) in tarefas" :key="index" :tarefa="tarefa" @aoTarefaClicada="selecionarTarefa" />
     <div class="modal" :class="{ 'is-active': tarefaSelecionada }" v-if="tarefaSelecionada">
       <div class="modal-background"></div>
@@ -32,7 +46,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, ref } from 'vue';
+import { computed, defineComponent, ref, watchEffect } from 'vue';
 
 import Formulario from '../components/Formulario.vue';
 import Tarefa from '../components/Tarefa.vue';
@@ -57,10 +71,11 @@ export default defineComponent({
     const store = useStore()
     const { notificar } = useNotificador()
 
+    const tarefaSelecionada = ref(null as ITarefa | null)
+    const filtro = ref("")
+
     store.dispatch(OBTER_TAREFAS)
     store.dispatch(OBTER_PROJETOS)
-
-    const tarefaSelecionada = ref(null as ITarefa | null)
 
     const salvarTarefa = (tarefa: ITarefa) => {
       if (tarefa.projeto) {
@@ -80,8 +95,19 @@ export default defineComponent({
         .then(() => tarefaSelecionada.value = null)
     }
 
+    // const tarefas = computed(() =>
+    //   store.state.tarefa.tarefas.filter(
+    //     t => !filtro.value || t.descricao.includes(filtro.value)
+    //   )
+    // )
+
+    watchEffect(() => {
+      store.dispatch(OBTER_TAREFAS, filtro.value)
+    })
+
     return {
       store,
+      filtro,
       tarefas: computed(() => store.state.tarefa.tarefas),
       tarefaSelecionada,
       salvarTarefa,
@@ -93,7 +119,7 @@ export default defineComponent({
 </script>
 
 <style>
-.span {
-  --texto-primario: #000;
+.field.filtro {
+    margin-bottom: 2rem;
 }
 </style>

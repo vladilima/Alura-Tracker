@@ -71,4 +71,7 @@ export default defineComponent({
     color: var(--texto-primario);
     background-color: var(--form-primario);
 }
+.box.formulario {
+    margin-bottom: 0rem;
+}
 </style>
