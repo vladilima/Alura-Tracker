@@ -32,7 +32,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent } from 'vue';
+import { computed, defineComponent, ref } from 'vue';
 
 import Formulario from '../components/Formulario.vue';
 import Tarefa from '../components/Tarefa.vue';
@@ -40,9 +40,11 @@ import Box from '../components/Box.vue';
 
 import { TipoNotificacao } from '@/interfaces/INotificacao';
 import { useStore } from '@/store';
+import useNotificador from '@/hooks/notificador'
 import { notificacaoMixin } from '@/mixins/notificar';
 import { ALTERAR_TAREFA, CADASTRAR_TAREFA, OBTER_PROJETOS, OBTER_TAREFAS } from '@/store/tipo-actions';
 import ITarefa from '@/interfaces/ITarefa';
+import { tarefa } from '@/store/modulos/tarefa';
 
 export default defineComponent({
   name: 'App',
@@ -51,38 +53,40 @@ export default defineComponent({
     Tarefa,
     Box
   },
-  mixins: [notificacaoMixin],
-  data() {
-    return {
-      tarefaSelecionada: null as ITarefa | null
-    }
-  },
-  methods: {
-    salvarTarefa(tarefa: ITarefa) {
-
-      if (tarefa.projeto) {
-        this.store.dispatch(CADASTRAR_TAREFA, tarefa)
-      }
-      else {
-        this.notificar(TipoNotificacao.FALHA, 'Tarefa não foi salva', 'Erro: A tarefa deve ter um projeto vinculado.')
-      }
-    },
-    selecionarTarefa(tarefa: ITarefa | null) {
-      this.tarefaSelecionada = tarefa
-    },
-    alterarTarefa () {
-      this.store.dispatch(ALTERAR_TAREFA, this.tarefaSelecionada)
-        .then(() => this.tarefaSelecionada = null)
-    }
-  },
   setup() {
     const store = useStore()
+    const { notificar } = useNotificador()
+
     store.dispatch(OBTER_TAREFAS)
     store.dispatch(OBTER_PROJETOS)
 
+    const tarefaSelecionada = ref(null as ITarefa | null)
+
+    const salvarTarefa = (tarefa: ITarefa) => {
+      if (tarefa.projeto) {
+        store.dispatch(CADASTRAR_TAREFA, tarefa)
+      }
+      else {
+        notificar(TipoNotificacao.FALHA, 'Tarefa não foi salva', 'Erro: A tarefa deve ter um projeto vinculado.')
+      }
+    }
+
+    const selecionarTarefa = (tarefa: ITarefa | null) => {
+      tarefaSelecionada.value = tarefa
+    }
+    
+    const alterarTarefa = () => {
+      store.dispatch(ALTERAR_TAREFA, tarefaSelecionada.value)
+        .then(() => tarefaSelecionada.value = null)
+    }
+
     return {
+      store,
       tarefas: computed(() => store.state.tarefa.tarefas),
-      store
+      tarefaSelecionada,
+      salvarTarefa,
+      selecionarTarefa,
+      alterarTarefa
     }
   }
 });

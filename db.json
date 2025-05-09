@@ -1,59 +1,9 @@
 {
   "projetos": [
     {
-      "id": "58d1",
+      "id": "e870",
       "nome": "Alura Tracker"
-    },
-    {
-      "id": "3d32",
-      "nome": "Plano de Estudos"
     }
   ],
-  "tarefas": [
-    {
-      "id": "64a6",
-      "duracaoEmSegundos": 1,
-      "descricao": "Refatoração",
-      "projeto": {
-        "id": "58d1",
-        "nome": "Alura Tracker"
-      }
-    },
-    {
-      "id": "8c61",
-      "duracaoEmSegundos": 2,
-      "descricao": "Teste",
-      "projeto": {
-        "id": "58d1",
-        "nome": "Alura Tracker"
-      }
-    },
-    {
-      "id": "6198",
-      "duracaoEmSegundos": 1,
-      "descricao": "Estudar Vue",
-      "projeto": {
-        "id": "58d1",
-        "nome": "Alura Tracker 3.0"
-      }
-    },
-    {
-      "id": "2eeb",
-      "duracaoEmSegundos": 2,
-      "descricao": "Estudar Composition API",
-      "projeto": {
-        "id": "58d1",
-        "nome": "Alura Tracker"
-      }
-    },
-    {
-      "id": "fe76",
-      "duracaoEmSegundos": 1,
-      "descricao": "Estudar Mais Vue",
-      "projeto": {
-        "id": "3d32",
-        "nome": "Plano de Estudos"
-      }
-    }
-  ]
+  "tarefas": []
 }
